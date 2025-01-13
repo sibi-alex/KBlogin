@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+	background-image: url("img/voice.gif");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: 100% auto;
+	background-blend-mode: screen;
+    color: white;
+    min-height: 100vh;
+}
+
+.floating-header {
+     position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(83, 173, 49, .8);
+    padding: 25px 100px;
+    border-radius: 30px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: float 3s ease-in-out infinite;
+    z-index: 1000;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+    100% { transform: translateX(-50%) translateY(0px); }
+}
+
+.container {
+    padding-top: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.clock-container {
+    margin: 20px 0;
+    padding: 25px;
+    background: ;
+    border-radius: 15px;
+}
+
+#clock {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#date {
+    font-size: 24px;
+    color: #fff;
+}
+
+.radio-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: ##E7E9EB;
+    border-radius: 15px;
+}
+
+#station-name {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#radio-player {
+    width: 60%;
+    margin: 0;
+}
+
+.station-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.nav-button {
+    padding: 10px 20px;
+    background: #ffffff;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background: #d5d4d4;
+    transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  padding: 5px;
+  color: #ffffff;
+}

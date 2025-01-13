@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEBA Radio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="floating-header">KEBA Radio</div><br>
+    
+    <div class="container">
+        <div class="clock-container">
+            <div id="clock">00:00:00</div>
+            <div id="date">January 1, 2025</div>
+        </div><br>
+        
+        <div class="radio-container">
+            <div id="station-name">Current Station: Loading...</div>
+            <div class="player-controls">
+                <button onclick="previousStation()" class="nav-button"><strong> << </strong></button>
+                <audio id="radio-player" controls>
+                    <source src="https://stream.live.vc.bbcmedia.co.uk/bbc_radio_one" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <button onclick="nextStation()" class="nav-button"><strong> >> </strong></button>
+            </div>
+            <div class="station-buttons">
+                <button onclick="changeStation('BBC Radio 1', 'https://stream.live.vc.bbcmedia.co.uk/bbc_radio_one')">BBC Radio 1</button>
+                <button onclick="changeStation('Classic FM', 'https://media-ice.musicradio.com/ClassicFMMP3')">Classic FM</button>
+                <button onclick="changeStation('Jazz24', 'https://live.wostreaming.net/direct/ppm-jazz24aac-ibc1')">Jazz24</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+	 <footer>
+    <p>© 2025 alsi@keba.com</p>
+  </footer>
+</body>
+</html>
