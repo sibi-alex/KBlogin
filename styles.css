@@ -6,7 +6,7 @@ body {
 	background-image: url("img/voice.gif");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-position: top center;
+	background-position: bottom;
 	background-size: 100% auto;
 	background-blend-mode: screen;
     color: white;
