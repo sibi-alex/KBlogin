@@ -14,19 +14,10 @@ body {
 }
 
 .floating-header {
-     position: fixed;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(83, 173, 49, .8);
-    padding: 25px 100px;
-    border-radius: 30px;
-    font-size: 35px;
-    font-weight: bold;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    animation: float 3s ease-in-out infinite;
-    z-index: 1000;
+     position: sticky;
+    top: 15px;
+    text-align: center;
+ 
 }
 
 @keyframes float {
@@ -36,33 +27,33 @@ body {
 }
 
 .container {
-    padding-top: 100px;
+    padding-top: 20px;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
 
 .clock-container {
-    margin: 20px 0;
-    padding: 25px;
-    background: ;
-    border-radius: 15px;
+    position: sticky;
+    text-align: center;
+	margin: 40px;
 }
 
 #clock {
-    font-size: 48px;
+    font-size: 55px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 #date {
-    font-size: 24px;
-    color: #fff;
+    font-size: 15px;
+    color: #696969;
 }
 
 .radio-container {
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 0;
+	position: sticky;
+    padding: 0px;
     background: ##E7E9EB;
     border-radius: 15px;
 }
