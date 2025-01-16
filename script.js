@@ -9,7 +9,7 @@ function updateClock() {
     document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
     
     // Update date display
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
     document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
 }
 
