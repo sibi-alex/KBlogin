@@ -1,59 +1,66 @@
-// Get current system time
-function updateClock() {
-    const now = new Date();
-    
-    // Update clock display
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
-    
-    // Update date display
-    const options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
-    document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+let timerInterval;
+let isWorking = false;
+let isOnBreak = false;
+let totalSeconds = 0;
+
+
+function updateCurrentTime() {
+    const currentTime = new Date("2025-02-09T23:41:33+01:00"); // Updated provided time
+    totalSeconds = Math.floor((new Date() - currentTime) / 1000); // Calculate elapsed time
+    const now = new Date(currentTime.getTime() + totalSeconds * 1000); // Update to current time
+    document.getElementById('current-time').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 }
 
-// Update clock every second
-setInterval(updateClock, 1000);
-updateClock(); // Initial update
+// Call updateCurrentTime immediately to set the initial time
+updateCurrentTime();
 
-// Radio stations data
-const stations = [
-    { name: 'Kronehit dig', url: 'https://secureonair.krone.at/kronehit-hp.mp3?aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAAO5gBgMEAZCA7kAoNABgACCjwiADAAEFHhUAGAAIKPDIAMAAQUeHQAYAAgo8SgAwABBR4tABgACCjxCADAAEFHikAGAAIKPBIAMAAQUeAA.YAAAAAAAAAAA&aggregator=hp' },
-    { name: 'Kronehit gym', url: 'https://secureonair.krone.at/kronehit06.mp3?aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAAO5gBgMEAZCA7kAoNABgACCjwiADAAEFHhUAGAAIKPDIAMAAQUeHQAYAAgo8SgAwABBR4tABgACCjxCADAAEFHikAGAAIKPBIAMAAQUeAA.YAAAAAAAAAAA&aggregator=hp' },
-    { name: 'AB In d mix', url: 'https://s3-webradio.antenne.de/in-the-mix/stream/mp3?aw_0_1st.playerid=AntenneBayernWebPlayer&aw_0_1st.skey=1736804933053&aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAASIgAgSIALCQAYAAgkQGgAwABBIgRABgACCRAqADAAEEiBkAGAAIJEDoAMAAQSIIQAYAAgkQSgAwABBIgpABgACCRAKADAAEEiC0AGAAIJEAAA.YAAAAAAAAAAA&companionAds=false&companion_zone_alias=41%2C42%2C40%2C731%2C752%2C756%2C765' },
-	{ name: 'AB nur d musik', url: 'https://s6-webradio.antenne.de/nur-die-musik/stream/mp3?aw_0_1st.playerid=AntenneBayernWebPlayer&aw_0_1st.skey=1736805329602&aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAASIgAgSIALCQAYAAgkQGgAwABBIgRABgACCRAqADAAEEiBkAGAAIJEDoAMAAQSIIQAYAAgkQSgAwABBIgpABgACCRAKADAAEEiC0AGAAIJEAAA.YAAAAAAAAAAA&companionAds=false&companion_zone_alias=41%2C42%2C40%2C731%2C752%2C756%2C765' },
-    { name: 'life radio', url: 'https://liferadio-tirol.streamabc.net/43-lrtirolsimulcast-mp3-192-7141014?sABC=6788q7p7%230%233n301or9n00166p142r33r55435r05qn%23ubzrcntr&aw_0_1st.playerid=homepage&amsparams=playerid:homepage;skey:1737021383' },
-	{ name: 'Rockantenne', url: 'https://s2-webradio.rockantenne.at/rockantenne-oesterreich/stream/mp3?aw_0_1st.playerid=RockAntenneATWebplayer&aw_0_1st.skey=1737024155012&aw_0_req.userConsentV2=CQLUvgAQLUvgAAFADCDEBYFgAAAAAAAAAAYgAAASIgAgSIALCQAYAAgkQGgAwABBIgRABgACCRAqADAAEEiBkAGAAIJEDoAMAAQSIIQAYAAgkQSgAwABBIgpABgACCRAKADAAEEiC0AGAAIJEAAA.YAAAAAAAAAAA&companionAds=false&companion_zone_alias=41%2C42%2C40%2C731%2C752%2C756%2C765https://live.wostreaming.net/direct/ppm-jazz24aac-ibc1' },
-	{ name: 'Jazz24', url: 'https://live.wostreaming.net/direct/ppm-jazz24aac-ibc1' },
-];
+// Update time every second
+setInterval(updateCurrentTime, 1000);
 
-let currentStationIndex = 0;
+document.getElementById('login-btn').addEventListener('click', function() {
+    if (!isWorking) {
+        isWorking = true;
+        this.innerHTML = '<img src="img/logout.png" alt="Logout">';
+        document.getElementById('status').innerText = "logged in";
+        startTimer();
+    } else {
+        isWorking = false;
+        clearInterval(timerInterval);
+        this.innerHTML = '<img src="img/login.png" alt="Login">';
+        document.getElementById('status').innerText = "logged out";
+    }
+});
 
-function changeStation(stationName, streamUrl) {
-    const player = document.getElementById('radio-player');
-    const stationDisplay = document.getElementById('station-name');
-    
-    player.src = streamUrl;
-    stationDisplay.textContent = `Current Station: ${stationName}`;
-    player.load();
-    player.play().catch(error => {
-        console.log('Error playing stream:', error);
-        stationDisplay.textContent = `Error loading station: ${stationName}`;
-    });
+document.getElementById('break-btn').addEventListener('click', function() {
+    if (isWorking) {
+        if (!isOnBreak) {
+            isOnBreak = true;
+            clearInterval(timerInterval);
+            this.style.backgroundColor = 'red';
+            document.getElementById('status').innerText += " You are on break";
+        } else {
+            isOnBreak = false;
+            startTimer();
+            this.style.backgroundColor = 'orange';
+            document.getElementById('status').innerText = document.getElementById('status').innerText.replace(" You are on break", "");
+        }
+    }
+});
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        totalSeconds++;
+        document.getElementById('timer').innerText = formatTime(totalSeconds);
+    }, 1000);
 }
 
-function nextStation() {
-    currentStationIndex = (currentStationIndex + 1) % stations.length;
-    const station = stations[currentStationIndex];
-    changeStation(station.name, station.url);
+function formatTime(totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
 
-function previousStation() {
-    currentStationIndex = (currentStationIndex - 1 + stations.length) % stations.length;
-    const station = stations[currentStationIndex];
-    changeStation(station.name, station.url);
+function pad(num) {
+    return num < 10 ? '0' + num : num;
 }
-
-// Initialize with first station
-changeStation(stations[0].name, stations[0].url);

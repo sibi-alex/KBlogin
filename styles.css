@@ -1,121 +1,44 @@
 body {
-    margin: 0;
-    padding: 0;
+    background-color: #fcfdfd;
     font-family: Arial, sans-serif;
-	background-color: black;
-	background-image: url("img/voice.gif");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center top;
-	background-size: 100% auto;
-	background-blend-mode: screen;
-    color: white;
-    min-height: 100vh;
-}
-
-.floating-header {
-     position: sticky;
-    top: 15px;
     text-align: center;
- 
+    margin-top: 50px;
 }
 
-@keyframes float {
-    0% { transform: translateX(-50%) translateY(0px); }
-    50% { transform: translateX(-50%) translateY(-10px); }
-    100% { transform: translateX(-50%) translateY(0px); }
+#app {
+    display: inline-block;
 }
 
-.container {
-    padding-top: 0;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.clock-container {
-    position: sticky;
-    text-align: center;
-	margin: 40px;
-}
-
-#clock {
-    font-size: 55px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#date {
-    font-size: 15px;
-    color: #696969;
-}
-
-.radio-container {
-    margin-top: 0;
-	position: sticky;
-    padding: 0px;
-    background: ##E7E9EB;
-    border-radius: 15px;
-}
-
-#station-name {
+#current-time{
     font-size: 20px;
-    margin-bottom: 20px;
-    color: #fff;
 }
-
-#radio-player {
-    width: 60%;
-    margin: 0;
-}
-
-.station-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-button {
-    padding: 10px 20px;
+button { 
+    margin: 10px;
     border: none;
-    border-radius: 25px;
-    background: #4CAF50;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-button:hover {
-    background: #45a049;
-    transform: scale(1.05);
+
+#login-icon {
+    padding: 0;
+    margin: 0;
+   
 }
 
-.player-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.nav-button {
+#break-btn {
     padding: 10px 20px;
-    background: #ffffff;
-    color: black;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background-color: orange;
 }
 
-.nav-button:hover {
-    background: #d5d4d4;
-    transform: scale(1.05);
+#timer {
+    font-size: 24px;
+    margin-top: 20px;
 }
 
-footer {
-  text-align: center;
-  padding: 5px;
-  color: #ffffff;
+#status {
+    background-color: rgb(126, 226, 126);
+    border-radius: 5px;
+    padding: 5px 10px;
 }
