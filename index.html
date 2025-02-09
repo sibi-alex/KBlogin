@@ -1,46 +1,19 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KEBA Radio</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Login Web App</title>
 </head>
 <body>
-    <div class="floating-header"><img src="img/logo.png" height="100px"></div>
-    
-	<div class="clock-container">
-            <div id="clock">00:00:00</div>
-            <div id="date">01, 1, 2025</div>
-        </div>
-		
-    <div class="container">
-        
-        
-        <div class="radio-container">
-            <div id="station-name">Current Station: Loading...</div>
-            <div class="player-controls">
-                <button onclick="previousStation()" class="nav-button"><strong> << </strong></button>
-                <audio id="radio-player" controls>
-                    <source src="https://stream.live.vc.bbcmedia.co.uk/bbc_radio_one" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <button onclick="nextStation()" class="nav-button"><strong> >> </strong></button>
-            </div>
-            <div class="station-buttons">
-                <button onclick="changeStation('Kronehit dig', 'https://secureonair.krone.at/kronehit-hp.mp3?aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAAO5gBgMEAZCA7kAoNABgACCjwiADAAEFHhUAGAAIKPDIAMAAQUeHQAYAAgo8SgAwABBR4tABgACCjxCADAAEFHikAGAAIKPBIAMAAQUeAA.YAAAAAAAAAAA&aggregator=hp')">Kronehit dig</button>
-                <button onclick="changeStation('Kronehit gym', 'https://secureonair.krone.at/kronehit06.mp3?aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAAO5gBgMEAZCA7kAoNABgACCjwiADAAEFHhUAGAAIKPDIAMAAQUeHQAYAAgo8SgAwABBR4tABgACCjxCADAAEFHikAGAAIKPBIAMAAQUeAA.YAAAAAAAAAAA&aggregator=hp')">Kronehit gym</button>
-                <button onclick="changeStation('AB In d mix', 'https://s3-webradio.antenne.de/in-the-mix/stream/mp3?aw_0_1st.playerid=AntenneBayernWebPlayer&aw_0_1st.skey=1736804933053&aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAASIgAgSIALCQAYAAgkQGgAwABBIgRABgACCRAqADAAEEiBkAGAAIJEDoAMAAQSIIQAYAAgkQSgAwABBIgpABgACCRAKADAAEEiC0AGAAIJEAAA.YAAAAAAAAAAA&companionAds=false&companion_zone_alias=41%2C42%2C40%2C731%2C752%2C756%2C765')">AB In d mix</button>
-		<button onclick="changeStation('AB nur d musik', 'https://s6-webradio.antenne.de/nur-die-musik/stream/mp3?aw_0_1st.playerid=AntenneBayernWebPlayer&aw_0_1st.skey=1736805329602&aw_0_req.userConsentV2=CQLK2sAQLK2sAAFADCDEBYFgAAAAAAAAAAYgAAASIgAgSIALCQAYAAgkQGgAwABBIgRABgACCRAqADAAEEiBkAGAAIJEDoAMAAQSIIQAYAAgkQSgAwABBIgpABgACCRAKADAAEEiC0AGAAIJEAAA.YAAAAAAAAAAA&companionAds=false&companion_zone_alias=41%2C42%2C40%2C731%2C752%2C756%2C765')">AB nur d musik</button>
-		<button onclick="changeStation('life radio', 'https://liferadio-tirol.streamabc.net/43-lrtirolsimulcast-mp3-192-7141014?sABC=6788q7p7%230%233n301or9n00166p142r33r55435r05qn%23ubzrcntr&aw_0_1st.playerid=homepage&amsparams=playerid:homepage;skey:1737021383')">life radio</button>
-		<button onclick="changeStation('RockAntenne', 'https://s2-webradio.rockantenne.at/rockantenne-oesterreich/stream/mp3?aw_0_1st.playerid=RockAntenneATWebplayer&aw_0_1st.skey=1737024155012&aw_0_req.userConsentV2=CQLUvgAQLUvgAAFADCDEBYFgAAAAAAAAAAYgAAASIgAgSIALCQAYAAgkQGgAwABBIgRABgACCRAqADAAEEiBkAGAAIJEDoAMAAQSIIQAYAAgkQSgAwABBIgpABgACCRAKADAAEEiC0AGAAIJEAAA.YAAAAAAAAAAA&companionAds=false&companion_zone_alias=41%2C42%2C40%2C731%2C752%2C756%2C765')">RockAntenne</button>
-                		
-		    <button onclick="changeStation('Jazz24', 'https://live.wostreaming.net/direct/ppm-jazz24aac-ibc1')">Jazz24</button>
-            </div>
-        </div>
+    <div id="app">
+        <div id="current-time"></div>
+        <button id="login-btn"><img src="img/login.png" alt="Login" id="login-icon"></button><br>
+        <button id="break-btn" style="background-color: orange;">Break</button>
+        <div id="timer">00:00:00</div>
+        <div id="status"></div>
     </div>
     <script src="script.js"></script>
-	 <footer>
-    <p>© 2025 alsi@keba.com</p>
-  </footer>
 </body>
 </html>
