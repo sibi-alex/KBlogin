@@ -22,6 +22,8 @@ document.getElementById("enterBtn").addEventListener("click", function() {
         running = false;
         document.getElementById("enterImg").src = "img/login.png";
         document.getElementById('status').innerText = "logged out";
+        workTime = 0;
+        document.getElementById("workTime").innerText = "00:00:00";
     } else {
         timer = setInterval(() => {
             if (!onBreak) {
