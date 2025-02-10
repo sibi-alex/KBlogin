@@ -1,18 +1,32 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Timer App</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Login Web App</title>
 </head>
 <body>
-    <div id="app">
-        <div id="current-time"></div>
-        <button id="login-btn"><img src="img/login.png" alt="Login" id="login-icon"></button><br>
-        <button id="break-btn" style="background-color: orange;">Break</button>
-        <div id="timer">00:00:00</div>
-        <div id="status"></div>
+    <h1>Keba Timer</h1>
+    <div class="work-timer">
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="buttons">
+            <button id="enterBtn">
+                <img id="enterImg" src="img/login.png" alt="Login" width="30">
+            </button>
+        </div>
+        <img id="cup" src="img/pause.png" alt="" width="40" height="40">
+        <button id="breakBtn" style="background-color: orange;">Pause</button>
+        <div id="brackbox">
+                
+        </div>
+        <br>  
+        <div id="statusBox">
+            <div>ArbeitZeit: <span id="workTime">00:00:00</span></div>
+            <div id="status"></div>
+        </div>
+        
     </div>
     <script src="script.js"></script>
 </body>
