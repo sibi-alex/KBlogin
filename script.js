@@ -12,7 +12,31 @@ else {
     alert("Service worker not working")
 }
 
-
+// Load saved data from localStorage
+function loadSavedData() {
+    const savedData = JSON.parse(localStorage.getItem("workTimerData"));
+    if (savedData) {
+      running = savedData.running;
+      onBreak = savedData.onBreak;
+      
+      workTime = savedData.workTime;
+      
+    }
+    updateStatus();
+  }
+  
+  // Save data to localStorage
+  function saveData() {
+    const data = {
+      running,
+      onBreak,
+      
+      workTime,
+      
+    };
+    localStorage.setItem("workTimerData", JSON.stringify(data));
+  }
+  
 
 
 let timer;
@@ -20,9 +44,11 @@ let workTime = 0;
 let running = false;
 let onBreak = false;
 
+
 function updateClock() {
     const now = new Date();
     document.getElementById("clock").innerText = now.toLocaleTimeString();
+    
 }
 setInterval(updateClock, 1000);
 
@@ -63,7 +89,7 @@ document.getElementById("breakBtn").addEventListener("click", function() {
             
         } else {
             this.style.backgroundColor = 'red';
-            document.getElementById('status').innerText += " -aber in Pause";
+            document.getElementById('status').innerText += " - in Pause";
         }
     }
 
