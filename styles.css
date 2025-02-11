@@ -54,10 +54,10 @@ button img {
 }
 
 #status{
-    background-color: rgb(153, 247, 141);
+    background-color: rgb(31, 173, 138);
     padding: 5px 20px;
     border-radius: 6px;
-    color: #0f4b01;
+    color: #f8faf8;
     font-size: 15px;
 }
 
