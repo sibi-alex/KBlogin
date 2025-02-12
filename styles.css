@@ -1,67 +1,77 @@
 body {
-    margin-top: 20px;
-    margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-}
-.work-timer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.clock {
-    font-size: 24px;
-}
-.buttons {
-    display: flex;
-    gap: 10px;
-}
-button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: aliceblue;
-}
-button img {
-    width: 100px;
-    height: 100px;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 50px;
 }
 
-#cup{
+.container {
+    width: 250px;
+    background: rgb(252, 253, 253);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+h1{
+    color: rgb(80, 147, 100);
     margin-top: 10px;
     margin-bottom: 0;
 }
-#breakBtn{
-
-    border-radius: 10px;
-    width: 80px;
-    text-align: center;
+#clock{
+    font-size: 24px;
+    color: #28342e;
+    margin-top:8px;
+    margin-bottom: 10px;
 }
 
-#workTime{
+button {
     
-    color: #050000;
-    font-size: 25px;
-    font-weight: bold;
-
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 10px;
+    color: white;
 }
 
-#status{
-    background-color: rgb(31, 173, 138);
-    padding: 5px 20px;
-    border-radius: 6px;
-    color: #f8faf8;
+#startBtn{
+    margin-top: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#breakBtn{
     font-size: 15px;
 }
 
+.green-btn { background: rgb(103, 173, 103);
+            height: 100px;
+            width: 120px;
+ }
+.red-btn { background: rgb(223, 87, 87);
+            height: 100px;
+            width: 120px;
+}
+.orange-btn { background: orange; }
+.dark-red-btn { background: rgb(219, 29, 73); }
+
+button:disabled {
+    background: rgb(255, 255, 255);
+    cursor: not-allowed;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+#workTime{
+    font-size: 24px;
+    font-weight: bold;
+}
+
 #statusBox{
+    margin-top: 20px;
     background-color: rgb(215, 248, 220);
     padding: 10px 20px;
     border-radius: 6px;

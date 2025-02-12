@@ -12,86 +12,74 @@ else {
     alert("Service worker not working")
 }
 
-// Load saved data from localStorage
-function loadSavedData() {
-    const savedData = JSON.parse(localStorage.getItem("workTimerData"));
-    if (savedData) {
-      running = savedData.running;
-      onBreak = savedData.onBreak;
-      
-      workTime = savedData.workTime;
-      
-    }
-    updateStatus();
-  }
-  
-  // Save data to localStorage
-  function saveData() {
-    const data = {
-      running,
-      onBreak,
-      
-      workTime,
-      
-    };
-    localStorage.setItem("workTimerData", JSON.stringify(data));
-  }
-  
 
 
-let timer;
-let workTime = 0;
-let running = false;
-let onBreak = false;
 
+const clockEl = document.getElementById("clock");
+const startBtn = document.getElementById("startBtn");
+const breakBtn = document.getElementById("breakBtn");
+const workTimeEl = document.getElementById("workTime");
+
+let workStartTime = null;
+let workElapsedTime = 0;
+let breakStartTime = null;
+let isRunning = false;
+let isOnBreak = false;
 
 function updateClock() {
     const now = new Date();
-    document.getElementById("clock").innerText = now.toLocaleTimeString();
-    
+    const timeString = now.toLocaleTimeString("en-GB", { hour12: false });
+    clockEl.textContent = timeString;
 }
 setInterval(updateClock, 1000);
+updateClock();
 
 function formatTime(seconds) {
-    let hrs = Math.floor(seconds / 3600);
-    let mins = Math.floor((seconds % 3600) / 60);
-    let secs = seconds % 60;
-    return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+    const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${h}:${m}:${s}`;
 }
 
-document.getElementById("enterBtn").addEventListener("click", function() {
-    if (running) {
-        clearInterval(timer);
-        running = false;
-        document.getElementById("enterImg").src = "img/login.png";
-        document.getElementById('status').innerText = "logged out";
+function updateWorkTime() {
+    if (isRunning && !isOnBreak) {
+        const now = Date.now();
+        workElapsedTime = Math.floor((now - workStartTime) / 1000);
+        workTimeEl.textContent = formatTime(workElapsedTime);
+    }
+}
+
+setInterval(updateWorkTime, 1000);
+
+startBtn.addEventListener("click", () => {
+    if (!isRunning) {
+        workStartTime = Date.now() - workElapsedTime * 1000;
+        isRunning = true;
+        startBtn.textContent = "Gehen";
+        startBtn.classList.remove("green-btn");
+        startBtn.classList.add("red-btn");
+        breakBtn.disabled = false;
     } else {
-        timer = setInterval(() => {
-            if (!onBreak) {
-                workTime++;
-                document.getElementById("workTime").innerText = formatTime(workTime);
-            }
-        }, 1000);
-        running = true;
-        document.getElementById("enterImg").src = "img/logout.png";
-        document.getElementById('status').innerText = "logged in";
+        isRunning = false;
+        startBtn.textContent = "Kommen";
+        startBtn.classList.remove("red-btn");
+        startBtn.classList.add("green-btn");
+        breakBtn.disabled = true;
     }
 });
 
-document.getElementById("breakBtn").addEventListener("click", function() {
-   
-    if (running){
-        onBreak = !onBreak;
-        if (!onBreak) {
-            this.style.backgroundColor = 'orange';
-            document.getElementById('status').innerText = document.getElementById('status').innerText.replace(" -aber in Pause", "");
-           
-            
-        } else {
-            this.style.backgroundColor = 'red';
-            document.getElementById('status').innerText += " - in Pause";
-        }
+breakBtn.addEventListener("click", () => {
+    if (!isOnBreak) {
+        isOnBreak = true;
+        breakStartTime = Date.now();
+        breakBtn.textContent = "Pause Ende";
+        breakBtn.classList.remove("orange-btn");
+        breakBtn.classList.add("dark-red-btn");
+    } else {
+        isOnBreak = false;
+        workStartTime += Date.now() - breakStartTime;
+        breakBtn.textContent = "Pause";
+        breakBtn.classList.remove("dark-red-btn");
+        breakBtn.classList.add("orange-btn");
     }
-
-    
 });

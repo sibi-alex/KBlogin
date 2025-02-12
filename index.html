@@ -1,37 +1,32 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login-Timer</title>
+    <title>SaK Timer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <h1 style="color: rgb(92, 160, 107);">Keba Timer</h1>
-    <div class="work-timer">
-        <div class="clock" id="clock">00:00:00</div>
-        <div class="buttons">
-            <button id="enterBtn">
-                <img id="enterImg" src="img/login.png" alt="Login" width="30">
-            </button>
-        </div>
-        <img id="cup" src="img/pause.png" alt="" width="40" height="40">
-        <button id="breakBtn" style="background-color: orange;">Pause</button>
-        <div id="brackbox">
-                
-        </div>
-        <br>  
+    <div class="container">
+        <h1>Arbeit Timer</h1>
+        <p id="clock">00:00:00</p><hr>
+
+        <button id="startBtn" class="green-btn">Kommen</button><br>
+        <button id="breakBtn" class="orange-btn" disabled>Pause</button>
+
         <div id="statusBox">
-            <div>ArbeitZeit: <span id="workTime">00:00:00</span></div>
-            <div id="status"></div>
+            <p>Arbeit Zeit: <span id="workTime">00:00:00</span></p>
         </div>
         
+
+        <footer>
+            <p>© sibi~EOL~keba.com~2025</p>
+        </footer>
+    
     </div>
+
     <script src="script.js"></script>
-<footer>
-    <p>© sibi~EOL~keba.com~2025</p>
-</footer>
+
 </body>
 </html>
